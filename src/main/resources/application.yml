@@ -15,7 +15,7 @@ spring:
 
 
 mybatis:
-  type-aliases-package: com.zhoutao.springboot_mybatis.model
+  type-aliases-package: com.upc.srp.model
   mapper-locations: classpath:/mybatis/*
   configuration:
     mapUnderscoreToCamelCase: true
