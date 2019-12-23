@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: srp
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/zhoutao?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: *
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 60
+      idle-timeout: 30000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+
+
+mybatis:
+  type-aliases-package: com.zhoutao.springboot_mybatis.model
+  mapper-locations: classpath:/mybatis/*
+  configuration:
+    mapUnderscoreToCamelCase: true
+    call-setters-on-nulls: true
+
+ftp:
+  ip: 192.168.88.10
+  port: 21
+  username: *
+  password: *
+  remotePath: /image/
