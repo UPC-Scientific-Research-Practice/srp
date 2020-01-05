@@ -1,4 +1,4 @@
-package com.upc.srp.model;
+package com.upc.srp.dto;
 
 /**
  * @author by zhoutao

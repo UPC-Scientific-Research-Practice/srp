@@ -1,6 +1,6 @@
 package com.upc.srp.dao;
 
-import com.upc.srp.model.User;
+import com.upc.srp.dto.User;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
