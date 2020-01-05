@@ -3,9 +3,9 @@ spring:
     name: srp
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/zhoutao?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/sci?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
     username: root
-    password: *
+    password: 5241533011
     hikari:
       minimum-idle: 10
       maximum-pool-size: 60
@@ -21,9 +21,5 @@ mybatis:
     mapUnderscoreToCamelCase: true
     call-setters-on-nulls: true
 
-ftp:
-  ip: 192.168.88.10
-  port: 21
-  username: *
-  password: *
-  remotePath: /image/
+server:
+  port: 8086
