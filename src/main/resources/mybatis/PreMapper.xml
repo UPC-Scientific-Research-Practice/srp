@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upc.srp.dao.PreDao">
+
+    <!--按住院号查找信息-->
+    <select id="selectbyno" parameterType="String" resultType="java.util.Map">
+        SELECT `住院号` no, `姓名` xingming, `性别` xingbie, `年龄` nianling, `民族` minzu, `婚姻` hunyin, `出生地` chushengdi,
+         `职业` zhiye, `脑脊液检查数据` naojiye, `血常规数据` xuechanggui, `常规尿液数据` changguiniaoye,
+          `血糖检查数据` xuetangjiancha, `MRI数据` MRI, `MRA数据` MRA, `脑血管造影数据` naoxueguanzaoying,
+           `数字减影血管造影数据` shuzijianying, `经颅多普勒超声检查数据` jingluduopule, `磁共振检查数据` cigongzhen,
+            `颅内压` luneiya, `神经系统变化` shenjingxitong, `血液生化` xueyeshenghua, `凝血功能` ningxuegongneng,
+             `胸部X线检查` xiongbuxxian, `脑出血类型` naochuxueleixing, `出血位置` chuxueweizhi, `出血原因` chuxueyuanyin,
+              `出血体积` chuxuetiji, `出血量` chuxueliang, `血肿形态` xuezhongxingtai, `脑内状况` naoneiqingkuang,
+               `发病时间` fabingshijian, `实施急救措施` shishijijiucuoshi, `是否饮酒` shifouyinjiu, `病人的状态` bingrenzhuangtai,
+                `脑部CT数据` naobuct, `手术时间` shoushushijian, `心电图数据` xindiantushuju, `发病前有哪些活动` fabingqianhuodong,
+                 `并发症` bingfazheng, `病人的体征状况数据` tizheng, `相关病史` bingshi, `手术中的突发情况` tufaqingkuang,
+                  `手术的所有备选方案` beixuanfangan, `手术实施方案` shishifangan, `手术时长` shoushushichang,
+                   `手术过程中的体征状况` shoushutizheng, `麻醉剂量` mazuijiliang, `术中用药` shuzhongyongyao,
+                    `手术效果` shoushuxiaoguo, `住院的时长` zhuyuanshichang, `术后用药` shuhouyongyao,
+                     `恢复状态` huifuzhuangtai, `出院时状态` chuyuanzhuangtai, `身体指标变化` shentizhibiaobianhua,
+                      `营养摄入` yingyangsheru, `病人状态` bingrenzhuangtai, `复查情况` fuchaqingkuang, `方案修改` fanganxiugai
+                      FROM `患者手术相关信息` where `住院号` = #{no}
+    </select>
+
+    <select id="selectbynolist" parameterType="List" resultType="java.util.LinkedHashMap">
+        SELECT * FROM `患者手术相关信息` where `住院号` in
+        <foreach collection="list" item="listItem" index="index" open="(" separator="," close=")"> #{listItem,jdbcType=VARCHAR} </foreach>
+    </select>
+
+	<!-- 查询基本信息 -->
+	<select id="selectjiben"  resultType="java.util.Map">
+		SELECT `住院号` no, `姓名` xingming, `性别` xingbie, `年龄` nianling, `民族` minzu, `婚姻` hunyin, `出生地` chushengdi,
+         `职业` zhiye FROM `患者手术相关信息`
+	</select>
+
+    <!--插入信息-->
+    <insert id="insertdata" parameterType="java.util.Map">
+        INSERT INTO `患者手术相关信息` (`住院号`,`姓名`,`性别`,`年龄`,`民族`,`婚姻`,`出生地`,`职业`,`脑脊液检查数据`,
+        `血常规数据`,`常规尿液数据`,`血糖检查数据`,`MRI数据`,`MRA数据`,`脑血管造影数据`,`数字减影血管造影数据`,
+        `经颅多普勒超声检查数据`,`磁共振检查数据`,`颅内压`,`神经系统变化`,`血液生化`,`凝血功能`,`胸部X线检查`,
+        `脑出血类型`,`出血位置`,`出血原因`,`出血体积`,`出血量`,`血肿形态`,`脑内状况`,`发病时间`,`实施急救措施`,`是否饮酒`,
+        `病人的状态`,`脑部CT数据`,`手术时间`,`心电图数据`,`发病前有哪些活动`,`并发症`,`病人的体征状况数据`,`相关病史`,
+        `手术中的突发情况`,`手术的所有备选方案`,`手术实施方案`,`手术时长`,`手术过程中的体征状况`,`麻醉剂量`,`术中用药`,
+        `手术效果`,`住院的时长`,`术后用药`,`恢复状态`,`出院时状态`,`身体指标变化`,`营养摄入`,`病人状态`,`复查情况`,`方案修改`)
+		VALUES (#{no}, #{xingming}, #{xingbie}, #{nianling}, #{minzu}, #{hunyin}, #{chushengdi}, #{zhiye}, #{naojiye}, #{xuechanggui},
+		#{changguiniaoye}, #{xuetangjiancha}, #{MRI}, #{MRA}, #{naoxueguanzaoying}, #{shuzijianying}, #{jingluduopule}, #{cigongzhen}, 
+		#{luneiya}, #{shenjingxitong}, #{xueyeshenghua}, #{ningxuegongneng}, #{xiongbuxxian}, #{naochuxueleixing}, #{chuxueweizhi}, 
+		#{chuxueyuanyin}, #{chuxuetiji}, #{chuxueliang}, #{xuezhongxingtai}, #{naoneiqingkuang}, #{fabingshijian}, #{shishijijiucuoshi}, 
+		#{shifouyinjiu}, #{bingrenzhuangtai}, #{naobuct}, #{shoushushijian}, #{xindiantushuju}, #{fabingqianhuodong}, #{bingfazheng}, 
+		#{tizheng}, #{bingshi}, #{tufaqingkuang}, #{beixuanfangan}, #{shishifangan}, #{shoushushichang}, #{shoushutizheng}, #{mazuijiliang}, 
+		#{shuzhongyongyao}, #{shoushuxiaoguo}, #{zhuyuanshichang}, #{shuhouyongyao}, #{huifuzhuangtai}, #{chuyuanzhuangtai}, 
+		#{shentizhibiaobianhua}, #{yingyangsheru}, #{bingrenzhuangtai}, #{fuchaqingkuang}, #{fanganxiugai})
+    </insert>
+
+
+</mapper>
+
