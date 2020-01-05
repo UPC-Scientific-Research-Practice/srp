@@ -5,7 +5,6 @@ import com.upc.srp.service.CTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -14,7 +13,7 @@ import java.util.Map;
 
 /**
  * @author by zhoutao
- * @description TODO
+ * @description ct查看
  * @date 2020/1/5 13:41
  */
 @Controller
