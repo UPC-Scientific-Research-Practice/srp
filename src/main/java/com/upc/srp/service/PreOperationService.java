@@ -17,5 +17,4 @@ public interface PreOperationService {
     public List<Map<String, Object>> selectbynolist(List<String> no);
     public int updatejiben(Map<String, Object> params);
     public int updateall(Map<String, Object> params);
-
 }

@@ -6,28 +6,28 @@
     <!--按住院号查找信息-->
     <select id="selectbyno" parameterType="Map" resultType="Map">
         SELECT `住院号` no, `姓名` xingming, `性别` xingbie, `年龄` nianling, `民族` minzu, `婚姻` hunyin, `出生地` chushengdi,
-        `职业` zhiye, `脑脊液检查数据` naojiye, `血常规数据` xuechanggui, `常规尿液数据` changguiniaoye,
-        `血糖检查数据` xuetangjiancha, `MRI数据` MRI, `MRA数据` MRA, `脑血管造影数据` naoxueguanzaoying,
-        `数字减影血管造影数据` shuzijianying, `经颅多普勒超声检查数据` jingluduopule, `磁共振检查数据` cigongzhen,
-        `颅内压` luneiya, `神经系统变化` shenjingxitong, `血液生化` xueyeshenghua, `凝血功能` ningxuegongneng,
-        `胸部X线检查` xiongbuxxian, `脑出血类型` naochuxueleixing, `出血位置` chuxueweizhi, `出血原因` chuxueyuanyin,
-        `出血体积` chuxuetiji, `出血量` chuxueliang, `血肿形态` xuezhongxingtai, `脑内状况` naoneiqingkuang,
-        `发病时间` fabingshijian, `实施急救措施` shishijijiucuoshi, `是否饮酒` shifouyinjiu, `病人的状态` bingrendezhuangtai,
-        `脑部CT数据` naobuct, `手术时间` shoushushijian, `心电图数据` xindiantushuju, `发病前有哪些活动` fabingqianhuodong,
-        `并发症` bingfazheng, `病人的体征状况数据` tizheng, `相关病史` bingshi, `手术中的突发情况` tufaqingkuang,
-        `手术的所有备选方案` beixuanfangan, `手术实施方案` shishifangan, `手术时长` shoushushichang,
-        `手术过程中的体征状况` shoushutizheng, `麻醉剂量` mazuijiliang, `术中用药` shuzhongyongyao,
-        `手术效果` shoushuxiaoguo, `住院的时长` zhuyuanshichang, `术后用药` shuhouyongyao,
-        `恢复状态` huifuzhuangtai, `出院时状态` chuyuanzhuangtai, `身体指标变化` shentizhibiaobianhua,
-        `营养摄入` yingyangsheru, `病人状态` bingrenzhuangtai, `复查情况` fuchaqingkuang, `方案修改` fanganxiugai
-        FROM `患者手术相关信息`
+         `职业` zhiye, `脑脊液检查数据` naojiye, `血常规数据` xuechanggui, `常规尿液数据` changguiniaoye,
+          `血糖检查数据` xuetangjiancha, `MRI数据` MRI, `MRA数据` MRA, `脑血管造影数据` naoxueguanzaoying,
+           `数字减影血管造影数据` shuzijianying, `经颅多普勒超声检查数据` jingluduopule, `磁共振检查数据` cigongzhen,
+            `颅内压` luneiya, `神经系统变化` shenjingxitong, `血液生化` xueyeshenghua, `凝血功能` ningxuegongneng,
+             `胸部X线检查` xiongbuxxian, `脑出血类型` naochuxueleixing, `出血位置` chuxueweizhi, `出血原因` chuxueyuanyin,
+              `出血体积` chuxuetiji, `出血量` chuxueliang, `血肿形态` xuezhongxingtai, `脑内状况` naoneiqingkuang,
+               `发病时间` fabingshijian, `实施急救措施` shishijijiucuoshi, `是否饮酒` shifouyinjiu, `病人的状态` bingrendezhuangtai,
+                `脑部CT数据` naobuct, `手术时间` shoushushijian, `心电图数据` xindiantushuju, `发病前有哪些活动` fabingqianhuodong,
+                 `并发症` bingfazheng, `病人的体征状况数据` tizheng, `相关病史` bingshi, `手术中的突发情况` tufaqingkuang,
+                  `手术的所有备选方案` beixuanfangan, `手术实施方案` shishifangan, `手术时长` shoushushichang,
+                   `手术过程中的体征状况` shoushutizheng, `麻醉剂量` mazuijiliang, `术中用药` shuzhongyongyao,
+                    `手术效果` shoushuxiaoguo, `住院的时长` zhuyuanshichang, `术后用药` shuhouyongyao,
+                     `恢复状态` huifuzhuangtai, `出院时状态` chuyuanzhuangtai, `身体指标变化` shentizhibiaobianhua,
+                      `营养摄入` yingyangsheru, `病人状态` bingrenzhuangtai, `复查情况` fuchaqingkuang, `方案修改` fanganxiugai
+                      FROM `患者手术相关信息`
         where 1=1
-        <if test="no != null and no != ''">
-            and `住院号` = #{no}
-        </if>
-        <if test="xingming != null and xingming != ''">
-            and `姓名` = #{xingming}
-        </if>
+            <if test="no != null and no != ''">
+                and `住院号` = #{no}
+            </if>
+            <if test="xingming != null and xingming != ''">
+                and `姓名` = #{xingming}
+            </if>
         LIMIT #{start}, #{limit}
     </select>
 
@@ -148,7 +148,5 @@
 		#{shuzhongyongyao}, #{shoushuxiaoguo}, #{zhuyuanshichang}, #{shuhouyongyao}, #{huifuzhuangtai}, #{chuyuanzhuangtai}, 
 		#{shentizhibiaobianhua}, #{yingyangsheru}, #{bingrenzhuangtai}, #{fuchaqingkuang}, #{fanganxiugai})
     </insert>
-
-
 </mapper>
 
