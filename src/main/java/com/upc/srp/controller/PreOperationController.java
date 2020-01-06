@@ -72,6 +72,38 @@ public class PreOperationController {
         }
     }
 
+    @ResponseBody
+    @PostMapping("/pre/updatejiben")  //修改基本
+    public Response updatejiben(@RequestBody Map<String, Object> data){
+        int sucess = preService.updatejiben(data);
+        System.out.println(sucess);
+        if(sucess==1){
+            return Response.getBuilder()
+                    .setCode(200)
+                    .setMessage("更新success").build();
+        }else{
+            return Response.getBuilder()
+                    .setCode(400)
+                    .setMessage("error").build();
+        }
+    }
+
+    @ResponseBody
+    @PostMapping("/pre/updateall")  //修改全部
+    public Response updateall(@RequestBody Map<String, Object> data){
+        int sucess = preService.updateall(data);
+        System.out.println(sucess);
+        if(sucess==1){
+            return Response.getBuilder()
+                    .setCode(200)
+                    .setMessage("更新success").build();
+        }else{
+            return Response.getBuilder()
+                    .setCode(400)
+                    .setMessage("error").build();
+        }
+    }
+
 
     @ResponseBody
     @PostMapping("/pre/exportexcel") //导出excel， 传入 List<String>

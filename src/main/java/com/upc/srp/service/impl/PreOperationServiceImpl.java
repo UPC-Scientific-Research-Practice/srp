@@ -62,6 +62,12 @@ public class PreOperationServiceImpl implements PreOperationService {
         return preDao.selectbynolist(no);
     }
 
+    @Override
+    public int updatejiben(Map<String, Object> params){ return preDao.updatejiben(params);}
+
+    @Override
+    public int updateall(Map<String, Object> params){ return preDao.updateall(params);}
+
 
 
 }
