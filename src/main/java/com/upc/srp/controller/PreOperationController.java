@@ -25,9 +25,9 @@ public class PreOperationController {
     PreOperationService preService;
 
     @ResponseBody
-    @PostMapping("/pre/selectbyno") //根据主键 住院号 查询所有信息
-    public Response getpre(@RequestBody Map map){
-        Map data = preService.selectbyno(map.get("no").toString());
+    @GetMapping("/pre/selectbyno") //根据主键 住院号 查询所有信息
+    public Response getpre(@RequestParam Map<String, Object> map){
+        List<Map<String, Object>> data = preService.selectbyno(map);
         if(data!=null){
             return Response.getBuilder()
                     .setCode(200)
@@ -42,8 +42,8 @@ public class PreOperationController {
 
     @ResponseBody
     @GetMapping("/pre/selectjiben") //返回基本信息的 List<Map>
-    public Response getjiben(){
-        List<Map> data = preService.selectjiben();
+    public Response getjiben(@RequestParam Map<String, Object> params){
+        List<Map<String, Object>> data = preService.selectjiben(params);
         if(data!=null){
             return Response.getBuilder()
                     .setCode(200)
@@ -58,7 +58,7 @@ public class PreOperationController {
 
     @ResponseBody
     @PostMapping("/pre/insert")  //插入信息
-    public Response insertpre(@RequestBody Map data){
+    public Response insertpre(@RequestBody Map<String, Object> data){
         int sucess = preService.insertdata(data);
         System.out.println(sucess);
         if(sucess==1){
@@ -79,7 +79,7 @@ public class PreOperationController {
 
         ExportExcel ee = new ExportExcel();
         int sucsess=0;
-        List<Map> data = preService.selectbynolist(list);
+        List<Map<String, Object>> data = preService.selectbynolist(list);
 
         try {
             ee.exportExcel(data,"资料","导出信息.xls",response);
