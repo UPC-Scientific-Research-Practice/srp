@@ -4,10 +4,7 @@ import com.upc.srp.dto.Response;
 import com.upc.srp.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -49,7 +46,8 @@ public class UploadController {
         }
     }
 
-    @GetMapping("/download")
+    @ResponseBody
+    @PostMapping("/download")
     public Response download(@RequestBody Map<String, Object> params, HttpServletResponse httpServletResponse){
         try{
             // 校验参数
@@ -58,6 +56,8 @@ public class UploadController {
             }
             // 设置请求头
             httpServletResponse.setContentType("application/octet-stream;charset=utf-8");
+            httpServletResponse.addHeader("Pargam", "no-cache");
+            httpServletResponse.addHeader("Cache-Control", "no-cache");
             // 设置文件下载的名称
             httpServletResponse.setHeader("Content-Disposition", "attachment;filename="+
                     new String(params.get("filename").toString().getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1));
