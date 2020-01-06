@@ -2,7 +2,7 @@ package com.upc.srp.utils;
 
 import com.auth0.jwt.JWT;
 import com.upc.srp.dao.UserDao;
-import com.upc.srp.model.User;
+import com.upc.srp.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;

@@ -1,7 +1,7 @@
 package com.upc.srp.controller;
 
 import com.upc.srp.dto.Response;
-import com.upc.srp.model.User;
+import com.upc.srp.dto.User;
 import com.upc.srp.service.AuthService;
 import com.upc.srp.utils.AuthUtil;
 import com.upc.srp.utils.JWTUtil;

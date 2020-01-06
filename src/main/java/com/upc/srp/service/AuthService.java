@@ -1,6 +1,6 @@
 package com.upc.srp.service;
 
-import com.upc.srp.model.User;
+import com.upc.srp.dto.User;
 
 /**
  * @author by zhoutao

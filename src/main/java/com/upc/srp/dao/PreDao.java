@@ -14,8 +14,12 @@ import java.util.Map;
 @Mapper
 public interface PreDao {
 
-    public Map selectbyno(String no);
-    public List<Map> selectjiben();
-    public int insertdata(Map data);
-    public List<Map> selectbynolist(List<String> no);
+    public List<Map<String, Object>> selectbyno(Map<String, Object> params);
+    public List<Map<String, Object>> selectjiben(Map<String, Object> params);
+    public int insertdata(Map<String, Object> params);
+    public List<Map<String, Object>> selectbynolist(List<String> no);
+    public int updatejiben(Map<String, Object> params);
+    public int updateall(Map<String, Object> params);
+
+
 }

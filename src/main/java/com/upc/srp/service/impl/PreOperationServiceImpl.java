@@ -22,24 +22,51 @@ public class PreOperationServiceImpl implements PreOperationService {
     @Autowired
     private PreDao preDao;
 
-    public Map selectbyno(String no){
-
-        return preDao.selectbyno(no);
+    @Override
+    public List<Map<String, Object>> selectbyno(Map<String, Object> params){
+        if(params.get("page") == null){
+            params.put("page", 1);
+        }
+        if(params.get("limit") == null){
+            params.put("limit", 10);
+        }
+        int page = Integer.parseInt(params.get("page").toString());
+        int limit = Integer.parseInt(params.get("limit").toString());
+        int start = (page - 1) * limit;
+        params.put("start", start);
+        return preDao.selectbyno(params);
     }
 
-    public int insertdata(Map data){
-
+    @Override
+    public int insertdata(Map<String, Object> data){
         return preDao.insertdata(data);
     }
 
-    public List<Map> selectjiben(){
-
-        return preDao.selectjiben();
+    @Override
+    public List<Map<String, Object>> selectjiben(Map<String, Object> params){
+        if(params.get("page") == null){
+            params.put("page", 1);
+        }
+        if(params.get("limit") == null){
+            params.put("limit", 10);
+        }
+        int page = Integer.parseInt(params.get("page").toString());
+        int limit = Integer.parseInt(params.get("limit").toString());
+        int start = (page - 1) * limit;
+        params.put("start", start);
+        return preDao.selectjiben(params);
     }
 
-    public List<Map> selectbynolist(List<String> no){
+    @Override
+    public List<Map<String, Object>> selectbynolist(List<String> no){
         return preDao.selectbynolist(no);
     }
+
+    @Override
+    public int updatejiben(Map<String, Object> params){ return preDao.updatejiben(params);}
+
+    @Override
+    public int updateall(Map<String, Object> params){ return preDao.updateall(params);}
 
 
 

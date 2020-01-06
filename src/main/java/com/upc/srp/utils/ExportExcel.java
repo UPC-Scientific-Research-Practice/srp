@@ -35,17 +35,17 @@ public class ExportExcel {
 
      *   用poi导出Excel文件的静态方法
 
+     * @param filepath             保存文件的地址
+
      * @param list                    数据：只能是List<Map<String, Object>>类型
 
      * @param sheetname        Excel的sheet名字
-
-     * @param filepath             保存文件的地址
 
      * @throws IOException
 
      */
 
-    public void exportExcel(List<Map> list,String sheetname,String fileName,HttpServletResponse response) throws IOException {
+    public void exportExcel(List<Map<String, Object>> list, String sheetname, String fileName, HttpServletResponse response) throws IOException {
 
         //新建工作簿
         HSSFWorkbook workbook=new HSSFWorkbook();

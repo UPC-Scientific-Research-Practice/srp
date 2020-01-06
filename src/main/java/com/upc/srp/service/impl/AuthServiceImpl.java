@@ -1,10 +1,9 @@
 package com.upc.srp.service.impl;
 
 import com.upc.srp.dao.UserDao;
-import com.upc.srp.model.User;
+import com.upc.srp.dto.User;
 import com.upc.srp.service.AuthService;
 import com.upc.srp.utils.AuthUtil;
-import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
