@@ -4,8 +4,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://52.83.75.37:3306/zhoutao?useUnicode=true&characterEncoding=utf-8
-    username: zhoutao
-    password: zhoutao
+    username: *
+    password: *
     hikari:
       minimum-idle: 10
       maximum-pool-size: 60
@@ -23,7 +23,7 @@ mybatis:
 
 
 file:
-  upload_path: http://34.231.147.37:8080/group1/upload
+  upload_path: http://192.168.1.1:8080/group1/upload
   path: record
   scene: record
   output: json
