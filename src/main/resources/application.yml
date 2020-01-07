@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: srp
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://52.83.75.37:3306/zhoutao?useUnicode=true&characterEncoding=utf-8
+    username: zhoutao
+    password: zhoutao
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 60
+      idle-timeout: 30000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+
+
+mybatis:
+  type-aliases-package: com.upc.srp.model
+  mapper-locations: classpath:/mybatis/*
+  configuration:
+    mapUnderscoreToCamelCase: true
+    call-setters-on-nulls: true
+
+
+file:
+  upload_path: http://34.231.147.37:8080/group1/upload
+  path: record
+  scene: record
+  output: json
