@@ -76,7 +76,6 @@ public class PreOperationController {
     @PostMapping("/pre/updatejiben")  //修改基本
     public Response updatejiben(@RequestBody Map<String, Object> data){
         int sucess = preService.updatejiben(data);
-        System.out.println(sucess);
         if(sucess==1){
             return Response.getBuilder()
                     .setCode(200)
@@ -92,7 +91,6 @@ public class PreOperationController {
     @PostMapping("/pre/updateall")  //修改全部
     public Response updateall(@RequestBody Map<String, Object> data){
         int sucess = preService.updateall(data);
-        System.out.println(sucess);
         if(sucess==1){
             return Response.getBuilder()
                     .setCode(200)
@@ -108,18 +106,17 @@ public class PreOperationController {
     @ResponseBody
     @PostMapping("/pre/exportexcel") //导出excel， 传入 List<String>
     public Response excel(@RequestBody List<String> list, HttpServletResponse response){
-
-        ExportExcel ee = new ExportExcel();
         int sucsess=0;
+        ExportExcel ee = new ExportExcel();
         List<Map<String, Object>> data = preService.selectbynolist(list);
-
         try {
-            ee.exportExcel(data,"资料","导出信息.xls",response);
+            String[] sheetname=new String[]{"基本信息","病史","体格检查","影像检查","血常规","尿常规和大便常规","肝功生化","肾功和甲功",
+                    "病毒系列和炎症指标以及其他","治疗情况及术后复查","出院情况","2周复诊","3月复诊","6月复诊","1年复诊","3年复诊","5年复诊","10年复诊","康复情况"};
+            ee.exportExcel(data,sheetname,"导出信息.xls", response);
             sucsess=1;
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
         }
-
         if(sucsess==1){
             return Response.getBuilder()
                     .setCode(200)
