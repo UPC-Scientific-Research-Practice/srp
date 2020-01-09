@@ -66,8 +66,6 @@ public class ExportExcel {
         for(Map<String, Object> data:list) {
             int a = 0;
             Object[] keyset= data.keySet().toArray();
-            System.out.println(keyset.length);
-
             for(int i = 0; i<=18; i++)
             {
                 HSSFSheet sheet = workbook.getSheetAt(i);
@@ -84,7 +82,6 @@ public class ExportExcel {
                 }
             }
             rownum++;
-            System.out.println(a);
         }
 
 
@@ -125,15 +122,15 @@ public class ExportExcel {
         try {
             this.setResponseHeader(response, fileName);
             OutputStream os = response.getOutputStream();
-//            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(workbook.getBytes());
-//            int len;
-//            byte[] buffer = new byte[1024];
-//            while ((len = byteArrayInputStream.read(buffer)) != -1){
-//                os.write(buffer, 0, len);
-//            }
-            workbook.write(os);
-            os.flush();
-            os.close();
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(workbook.getBytes());
+            int len;
+            byte[] buffer = new byte[1024];            
+	    while ((len = byteArrayInputStream.read(buffer)) != -1){
+                os.write(buffer, 0, len);
+            }
+//	    workbook.write(os);
+//          os.flush();
+//          os.close();
         } catch (Exception e) {
             System.out.println(e.toString());
         }
