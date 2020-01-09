@@ -23,6 +23,7 @@ public class ExportExcel {
 
     /**
      *   用poi导出Excel文件的静态方法
+
      * @param filename        保存文件的地址
      * @param list            数据：只能是List<Map<String, Object>>类型
      * @param sheetname[]       Excel的sheet名字数组
@@ -124,13 +125,14 @@ public class ExportExcel {
             OutputStream os = response.getOutputStream();
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(workbook.getBytes());
             int len;
-            byte[] buffer = new byte[1024];            
-	    while ((len = byteArrayInputStream.read(buffer)) != -1){
+
+            byte[] buffer = new byte[1024];
+            while ((len = byteArrayInputStream.read(buffer)) != -1){
                 os.write(buffer, 0, len);
             }
-//	    workbook.write(os);
-//          os.flush();
-//          os.close();
+//            workbook.write(os);
+//            os.flush();
+//            os.close();
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -149,3 +151,4 @@ public class ExportExcel {
         }
     }
 }
+
