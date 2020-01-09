@@ -5,148 +5,278 @@
 
     <!--按住院号查找信息-->
     <select id="selectbyno" parameterType="Map" resultType="Map">
-        SELECT `住院号` no, `姓名` xingming, `性别` xingbie, `年龄` nianling, `民族` minzu, `婚姻` hunyin, `出生地` chushengdi,
-         `职业` zhiye, `脑脊液检查数据` naojiye, `血常规数据` xuechanggui, `常规尿液数据` changguiniaoye,
-          `血糖检查数据` xuetangjiancha, `MRI数据` MRI, `MRA数据` MRA, `脑血管造影数据` naoxueguanzaoying,
-           `数字减影血管造影数据` shuzijianying, `经颅多普勒超声检查数据` jingluduopule, `磁共振检查数据` cigongzhen,
-            `颅内压` luneiya, `神经系统变化` shenjingxitong, `血液生化` xueyeshenghua, `凝血功能` ningxuegongneng,
-             `胸部X线检查` xiongbuxxian, `脑出血类型` naochuxueleixing, `出血位置` chuxueweizhi, `出血原因` chuxueyuanyin,
-              `出血体积` chuxuetiji, `出血量` chuxueliang, `血肿形态` xuezhongxingtai, `脑内状况` naoneiqingkuang,
-               `发病时间` fabingshijian, `实施急救措施` shishijijiucuoshi, `是否饮酒` shifouyinjiu, `病人的状态` bingrendezhuangtai,
-                `脑部CT数据` naobuct, `手术时间` shoushushijian, `心电图数据` xindiantushuju, `发病前有哪些活动` fabingqianhuodong,
-                 `并发症` bingfazheng, `病人的体征状况数据` tizheng, `相关病史` bingshi, `手术中的突发情况` tufaqingkuang,
-                  `手术的所有备选方案` beixuanfangan, `手术实施方案` shishifangan, `手术时长` shoushushichang,
-                   `手术过程中的体征状况` shoushutizheng, `麻醉剂量` mazuijiliang, `术中用药` shuzhongyongyao,
-                    `手术效果` shoushuxiaoguo, `住院的时长` zhuyuanshichang, `术后用药` shuhouyongyao,
-                     `恢复状态` huifuzhuangtai, `出院时状态` chuyuanzhuangtai, `身体指标变化` shentizhibiaobianhua,
-                      `营养摄入` yingyangsheru, `病人状态` bingrenzhuangtai, `复查情况` fuchaqingkuang, `方案修改` fanganxiugai
-                      FROM `患者手术相关信息`
+        SELECT * FROM `信息表`
         where 1=1
-            <if test="no != null and no != ''">
-                and `住院号` = #{no}
+            <if test="zhuyuanhao != null and zhuyuanhao != ''">
+                and `zhuyuanhao` = #{zhuyuanhao}
             </if>
             <if test="xingming != null and xingming != ''">
-                and `姓名` = #{xingming}
+                and `xingming` = #{xingming}
             </if>
         LIMIT #{start}, #{limit}
     </select>
 
     <!--更新基本信息-->
     <update id="updatejiben" parameterType="java.util.Map">
-        UPDATE `患者手术相关信息`
+        UPDATE `信息表`
         <trim prefix="set" suffixOverrides=",">
-
-            <if test="xingming!=null">`姓名` = #{xingming},</if>
-            <if test="xingbie!=null">`性别` = #{xingbie},</if>
-            <if test="nianling!=null">`年龄` = #{nianling},</if>
-            <if test="minzu!=null">`民族` = #{minzu},</if>
-            <if test="hunyin!=null">`婚姻` = #{hunyin},</if>
-            <if test="chushengdi!=null">`出生地` = #{chushengdi},</if>
-            <if test="zhiye!=null">`职业` = #{zhiye},</if>
+            <if test="fenzhongxin!=null">`fenzhongxin` = #{fenzhongxin},</if>
+            <if test="xingming!=null">`xingming` = #{xingming},</if>
+            <if test="zhuyuancishu!=null">`zhuyuancishu` = #{zhuyuancishu},</if>
+            <if test="xingbie!=null">`xingbie` = #{xingbie},</if>
+            <if test="nianling!=null">`nianling` = #{nianling},</if>
+            <if test="chushengriqi!=null">`chushengriqi` = #{chushengriqi},</if>
+            <if test="guoji!=null">`guoji` = #{guoji},</if>
+            <if test="jiguan!=null">`jiguan` = #{jiguan},</if>
+            <if test="minzu!=null">`minzu` = #{minzu},</if>
+            <if test="shenfenzhenghao!=null">`shenfenzhenghao` = #{shenfenzhenghao},</if>
+            <if test="zhiye!=null">`zhiye` = #{zhiye},</if>
+            <if test="zhuzhi!=null">`zhuzhi` = #{zhuzhi},</if>
+            <if test="lianxidianhua!=null">`lianxidianhua` = #{lianxidianhua},</if>
     </trim>
-        WHERE `住院号` = #{no}
+        WHERE `zhuyuanhao` = #{zhuyuanhao}
     </update>
 
     <!--更新全部信息-->
     <update id="updateall" parameterType="java.util.Map">
-        UPDATE `患者手术相关信息`
+        UPDATE `信息表`
         <trim prefix="set" suffixOverrides=",">
-            <if test="xingming!=null">`姓名` = #{xingming},</if>
-            <if test="xingbie!=null">`性别` = #{xingbie},</if>
-            <if test="nianling!=null">`年龄` = #{nianling},</if>
-            <if test="minzu!=null">`民族` = #{minzu},</if>
-            <if test="hunyin!=null">`婚姻` = #{hunyin},</if>
-            <if test="chushengdi!=null">`出生地` = #{chushengdi},</if>
-            <if test="zhiye!=null">`职业` = #{zhiye},</if>
-            <if test="naojiye!=null">`脑脊液检查数据` = #{naojiye},</if>
-            <if test="xuechanggui!=null">`血常规数据` = #{xuechanggui},</if>
-            <if test="changguiniaoye!=null">`常规尿液数据` = #{changguiniaoye},</if>
-            <if test="xuetangjiancha!=null">`血糖检查数据` = #{xuetangjiancha},</if>
-            <if test="MRI!=null">`MRI数据` = #{MRI},</if>
-            <if test="MRA!=null">`MRA数据` = #{MRA},</if>
-            <if test="naoxueguanzaoying!=null">`脑血管造影数据` = #{naoxueguanzaoying},</if>
-            <if test="shuzijianying!=null">`数字减影血管造影数据` = #{shuzijianying},</if>
-            <if test="jingluduopule!=null">`经颅多普勒超声检查数据` = #{jingluduopule},</if>
-            <if test="cigongzhen!=null">`磁共振检查数据` = #{cigongzhen},</if>
-            <if test="luneiya!=null">`颅内压` = #{luneiya},</if>
-            <if test="shenjingxitong!=null">`神经系统变化` = #{shenjingxitong},</if>
-            <if test="xueyeshenghua!=null">`血液生化` = #{xueyeshenghua},</if>
-            <if test="ningxuegongneng!=null">`凝血功能` = #{ningxuegongneng},</if>
-            <if test="xiongbuxxian!=null">`胸部X线检查` = #{xiongbuxxian},</if>
-            <if test="naochuxueleixing!=null">`脑出血类型` = #{naochuxueleixing},</if>
-            <if test="chuxueweizhi!=null">`出血位置` = #{chuxueweizhi},</if>
-            <if test="chuxueyuanyin!=null">`出血原因` = #{chuxueyuanyin},</if>
-            <if test="chuxuetiji!=null">`出血体积` = #{chuxuetiji},</if>
-            <if test="chuxueliang!=null">`出血量` = #{chuxueliang},</if>
-            <if test="xuezhongxingtai!=null">`血肿形态` = #{xuezhongxingtai},</if>
-            <if test="naoneiqingkuang!=null">`脑内状况` = #{naoneiqingkuang},</if>
-            <if test="fabingshijian!=null">`发病时间` = #{fabingshijian},</if>
-            <if test="shishijijiucuoshi!=null">`实施急救措施` = #{shishijijiucuoshi},</if>
-            <if test="shifouyinjiu!=null">`是否饮酒` = #{shifouyinjiu},</if>
-            <if test="bingrenzhuangtai!=null">`病人的状态` = #{bingrenzhuangtai},</if>
-            <if test="naobuct!=null">`脑部CT数据` = #{naobuct},</if>
-            <if test="shoushushijian!=null">`手术时间` = #{shoushushijian},</if>
-            <if test="xindiantushuju!=null">`心电图数据` = #{xindiantushuju},</if>
-            <if test="fabingqianhuodong!=null">`发病前有哪些活动` = #{fabingqianhuodong},</if>
-            <if test="bingfazheng!=null">`并发症` = #{bingfazheng},</if>
-            <if test="tizheng!=null">`病人的体征状况数据` = #{tizheng},</if>
-            <if test="bingshi!=null">`相关病史` = #{bingshi},</if>
-            <if test="tufaqingkuang!=null">`手术中的突发情况` = #{tufaqingkuang},</if>
-            <if test="beixuanfangan!=null">`手术的所有备选方案` = #{beixuanfangan},</if>
-            <if test="shishifangan!=null">`手术实施方案` = #{shishifangan},</if>
-            <if test="shoushushichang!=null">`手术时长` = #{shoushushichang},</if>
-            <if test="shoushutizheng!=null">`手术过程中的体征状况` = #{shoushutizheng},</if>
-            <if test="mazuijiliang!=null">`麻醉剂量` = #{mazuijiliang},</if>
-            <if test="shuzhongyongyao!=null">`术中用药` = #{shuzhongyongyao},</if>
-            <if test="shoushuxiaoguo!=null">`手术效果` = #{shoushuxiaoguo},</if>
-            <if test="zhuyuanshichang!=null">`住院的时长` = #{zhuyuanshichang},</if>
-            <if test="shuhouyongyao!=null">`术后用药` = #{shuhouyongyao},</if>
-            <if test="huifuzhuangtai!=null">`恢复状态` = #{huifuzhuangtai},</if>
-            <if test="chuyuanzhuangtai!=null">`出院时状态` = #{chuyuanzhuangtai},</if>
-            <if test="shentizhibiaobianhua!=null">`身体指标变化` = #{shentizhibiaobianhua},</if>
-            <if test="yingyangsheru!=null">`营养摄入` = #{yingyangsheru},</if>
-            <if test="bingrenzhuangtai!=null">`病人状态` = #{bingrenzhuangtai},</if>
-            <if test="fuchaqingkuang!=null">`复查情况` = #{fuchaqingkuang},</if>
-            <if test="fanganxiugai!=null">`方案修改` = #{fanganxiugai},</if>
-
+            <if test="fenzhongxin!=null">`fenzhongxin` = #{fenzhongxin},</if>
+            <if test="xingming!=null">`xingming` = #{xingming},</if>
+            <if test="zhuyuancishu!=null">`zhuyuancishu` = #{zhuyuancishu},</if>
+            <if test="xingbie!=null">`xingbie` = #{xingbie},</if>
+            <if test="nianling!=null">`nianling` = #{nianling},</if>
+            <if test="chushengriqi!=null">`chushengriqi` = #{chushengriqi},</if>
+            <if test="guoji!=null">`guoji` = #{guoji},</if>
+            <if test="jiguan!=null">`jiguan` = #{jiguan},</if>
+            <if test="minzu!=null">`minzu` = #{minzu},</if>
+            <if test="shenfenzhenghao!=null">`shenfenzhenghao` = #{shenfenzhenghao},</if>
+            <if test="zhiye!=null">`zhiye` = #{zhiye},</if>
+            <if test="zhuzhi!=null">`zhuzhi` = #{zhuzhi},</if>
+            <if test="lianxidianhua!=null">`lianxidianhua` = #{lianxidianhua},</if>
+            <if test="ruyuantujing!=null">`ruyuantujing` = #{ruyuantujing},</if>
+            <if test="zhuyuantianshu!=null">`zhuyuantianshu` = #{zhuyuantianshu},</if>
+            <if test="ruyuankebie!=null">`ruyuankebie` = #{ruyuankebie},</if>
+            <if test="zhuankekebie!=null">`zhuankekebie` = #{zhuankekebie},</if>
+            <if test="chuyuankebie!=null">`chuyuankebie` = #{chuyuankebie},</if>
+            <if test="zhuyaozhenduan!=null">`zhuyaozhenduan` = #{zhuyaozhenduan},</if>
+            <if test="zhuyaozhenduanbianma!=null">`zhuyaozhenduanbianma` = #{zhuyaozhenduanbianma},</if>
+            <if test="qitazhenduan!=null">`qitazhenduan` = #{qitazhenduan},</if>
+            <if test="qitazhenduanbianma!=null">`qitazhenduanbianma` = #{qitazhenduanbianma},</if>
+            <if test="fabingshijian!=null">`fabingshijian` = #{fabingshijian},</if>
+            <if test="zhuyaozhengzhuang!=null">`zhuyaozhengzhuang` = #{zhuyaozhengzhuang},</if>
+            <if test="bansuizhengzhuang!=null">`bansuizhengzhuang` = #{bansuizhengzhuang},</if>
+            <if test="jiwangshi!=null">`jiwangshi` = #{jiwangshi},</if>
+            <if test="yaowuguomin!=null">`yaowuguomin` = #{yaowuguomin},</if>
+            <if test="guominyaowu!=null">`guominyaowu` = #{guominyaowu},</if>
+            <if test="xiyanshi!=null">`xiyanshi` = #{xiyanshi},</if>
+            <if test="yinjiushi!=null">`yinjiushi` = #{yinjiushi},</if>
+            <if test="gerenshi!=null">`gerenshi` = #{gerenshi},</if>
+            <if test="jiazushi!=null">`jiazushi` = #{jiazushi},</if>
+            <if test="xueya!=null">`xueya` = #{xueya},</if>
+            <if test="yishishuiping!=null">`yishishuiping` = #{yishishuiping},</if>
+            <if test="zhitiyundongjili!=null">`zhitiyundongjili` = #{zhitiyundongjili},</if>
+            <if test="ganjuezhangai!=null">`ganjuezhangai` = #{ganjuezhangai},</if>
+            <if test="yuyanbiaoda!=null">`yuyanbiaoda` = #{yuyanbiaoda},</if>
+            <if test="shenjingfanshe!=null">`shenjingfanshe` = #{shenjingfanshe},</if>
+            <if test="binglizheng!=null">`binglizheng` = #{binglizheng},</if>
+            <if test="NIHSS!=null">`NIHSS` = #{NIHSS},</if>
+            <if test="GLASGOW!=null">`GLASGOW` = #{GLASGOW},</if>
+            <if test="ADL!=null">`ADL` = #{ADL},</if>
+            <if test="MRANKIN!=null">`MRANKIN` = #{MRANKIN},</if>
+            <if test="MMSE!=null">`MMSE` = #{MMSE},</if>
+            <if test="LOTCA!=null">`LOTCA` = #{LOTCA},</if>
+            <if test="chuxuebuwei!=null">`chuxuebuwei` = #{chuxuebuwei},</if>
+            <if test="chuxuetiji!=null">`chuxuetiji` = #{chuxuetiji},</if>
+            <if test="CTzhi!=null">`CTzhi` = #{CTzhi},</if>
+            <if test="xinzangcaichao!=null">`xinzangcaichao` = #{xinzangcaichao},</if>
+            <if test="LVEF!=null">`LVEF` = #{LVEF},</if>
+            <if test="jingdongmaicaichao!=null">`jingdongmaicaichao` = #{jingdongmaicaichao},</if>
+            <if test="xiongpian!=null">`xiongpian` = #{xiongpian},</if>
+            <if test="xuebaixibao!=null">`xuebaixibao` = #{xuebaixibao},</if>
+            <if test="zhongxing!=null">`zhongxing` = #{zhongxing},</if>
+            <if test="linba!=null">`linba` = #{linba},</if>
+            <if test="danhe!=null">`danhe` = #{danhe},</if>
+            <if test="xuehongxibao!=null">`xuehongxibao` = #{xuehongxibao},</if>
+            <if test="xuehongdanbai!=null">`xuehongdanbai` = #{xuehongdanbai},</if>
+            <if test="xuexiaoban!=null">`xuexiaoban` = #{xuexiaoban},</if>
+            <if test="niaobaixibao!=null">`niaobaixibao` = #{niaobaixibao},</if>
+            <if test="niaohongxibao!=null">`niaohongxibao` = #{niaohongxibao},</if>
+            <if test="niaodanbai!=null">`niaodanbai` = #{niaodanbai},</if>
+            <if test="nongxibao!=null">`nongxibao` = #{nongxibao},</if>
+            <if test="OB!=null">`OB` = #{OB},</if>
+            <if test="gubing!=null">`gubing` = #{gubing},</if>
+            <if test="gucao!=null">`gucao` = #{gucao},</if>
+            <if test="zhuantaimei!=null">`zhuantaimei` = #{zhuantaimei},</if>
+            <if test="zongdanbai!=null">`zongdanbai` = #{zongdanbai},</if>
+            <if test="baidanbai!=null">`baidanbai` = #{baidanbai},</if>
+            <if test="zongdanhongsu!=null">`zongdanhongsu` = #{zongdanhongsu},</if>
+            <if test="zhijiedanhongsu!=null">`zhijiedanhongsu` = #{zhijiedanhongsu},</if>
+            <if test="xuetang!=null">`xuetang` = #{xuetang},</if>
+            <if test="zongdanguchun!=null">`zongdanguchun` = #{zongdanguchun},</if>
+            <if test="ganyousanzhi!=null">`ganyousanzhi` = #{ganyousanzhi},</if>
+            <if test="HDL!=null">`HDL` = #{HDL},</if>
+            <if test="LDL!=null">`LDL` = #{LDL},</if>
+            <if test="tanghuaxuehongdanbai!=null">`tanghuaxuehongdanbai` = #{tanghuaxuehongdanbai},</if>
+            <if test="HCY!=null">`HCY` = #{HCY},</if>
+            <if test="jigaiT!=null">`jigaiT` = #{jigaiT},</if>
+            <if test="jigaiI!=null">`jigaiI` = #{jigaiI},</if>
+            <if test="BNP!=null">`BNP` = #{BNP},</if>
+            <if test="na!=null">`na` = #{na},</if>
+            <if test="jia!=null">`jia` = #{jia},</if>
+            <if test="lv!=null">`lv` = #{lv},</if>
+            <if test="CO2!=null">`CO2` = #{CO2},</if>
+            <if test="niaosu!=null">`niaosu` = #{niaosu},</if>
+            <if test="jigan!=null">`jigan` = #{jigan},</if>
+            <if test="niaosuan!=null">`niaosuan` = #{niaosuan},</if>
+            <if test="T3!=null">`T3` = #{T3},</if>
+            <if test="T4!=null">`T4` = #{T4},</if>
+            <if test="TSH!=null">`TSH` = #{TSH},</if>
+            <if test="guoyanghuawumei!=null">`guoyanghuawumei` = #{guoyanghuawumei},</if>
+            <if test="qiudanbai!=null">`qiudanbai` = #{qiudanbai},</if>
+            <if test="yigan!=null">`yigan` = #{yigan},</if>
+            <if test="biaomiankangyuan!=null">`biaomiankangyuan` = #{biaomiankangyuan},</if>
+            <if test="biaomiankangti!=null">`biaomiankangti` = #{biaomiankangti},</if>
+            <if test="Ekangyuan!=null">`Ekangyuan` = #{Ekangyuan},</if>
+            <if test="Ekangti!=null">`Ekangti` = #{Ekangti},</if>
+            <if test="hexinkangti!=null">`hexinkangti` = #{hexinkangti},</if>
+            <if test="binggan!=null">`binggan` = #{binggan},</if>
+            <if test="meidu!=null">`meidu` = #{meidu},</if>
+            <if test="HIV!=null">`HIV` = #{HIV},</if>
+            <if test="PCT!=null">`PCT` = #{PCT},</if>
+            <if test="CRP!=null">`CRP` = #{CRP},</if>
+            <if test="naojiye!=null">`naojiye` = #{naojiye},</if>
+            <if test="ABETA!=null">`ABETA` = #{ABETA},</if>
+            <if test="TLR!=null">`TLR` = #{TLR},</if>
+            <if test="NLR!=null">`NLR` = #{NLR},</if>
+            <if test="shoushushijian!=null">`shoushushijian` = #{shoushushijian},</if>
+            <if test="shushufangshi!=null">`shushufangshi` = #{shushufangshi},</if>
+            <if test="yaowuzhiliao!=null">`yaowuzhiliao` = #{yaowuzhiliao},</if>
+            <if test="bingfazheng!=null">`bingfazheng` = #{bingfazheng},</if>
+            <if test="luneiganran!=null">`luneiganran` = #{luneiganran},</if>
+            <if test="feiyan!=null">`feiyan` = #{feiyan},</if>
+            <if test="miniaoxiganran!=null">`miniaoxiganran` = #{miniaoxiganran},</if>
+            <if test="shuhouNIHSS!=null">`shuhouNIHSS` = #{shuhouNIHSS},</if>
+            <if test="shuhouGLASGOW!=null">`shuhouGLASGOW` = #{shuhouGLASGOW},</if>
+            <if test="shuhouADL!=null">`shuhouADL` = #{shuhouADL},</if>
+            <if test="shuhouMRANKIN!=null">`shuhouMRANKIN` = #{shuhouMRANKIN},</if>
+            <if test="shuhouxueya!=null">`shuhouxueya` = #{shuhouxueya},</if>
+            <if test="chuyuanxueya!=null">`chuyuanxueya` = #{chuyuanxueya},</if>
+            <if test="chuyuanNIHSS!=null">`chuyuanNIHSS` = #{chuyuanNIHSS},</if>
+            <if test="chuyuanGLASGOW!=null">`chuyuanGLASGOW` = #{chuyuanGLASGOW},</if>
+            <if test="chuyuanADL!=null">`chuyuanADL` = #{chuyuanADL},</if>
+            <if test="chuyuanMRANKIN!=null">`chuyuanMRANKIN` = #{chuyuanMRANKIN},</if>
+            <if test="chuyuanMMSE!=null">`chuyuanMMSE` = #{chuyuanMMSE},</if>
+            <if test="chuyuanLOTCA!=null">`chuyuanLOTCA` = #{chuyuanLOTCA},</if>
+            <if test="di2zhouxueya!=null">`di2zhouxueya` = #{di2zhouxueya},</if>
+            <if test="di2zhouyishishuiping!=null">`di2zhouyishishuiping` = #{di2zhouyishishuiping},</if>
+            <if test="di2zhouzhitiyundongjili!=null">`di2zhouzhitiyundongjili` = #{di2zhouzhitiyundongjili},</if>
+            <if test="di2zhouganjuezhangai!=null">`di2zhouganjuezhangai` = #{di2zhouganjuezhangai},</if>
+            <if test="di2zhouyuyanbiaoda!=null">`di2zhouyuyanbiaoda` = #{di2zhouyuyanbiaoda},</if>
+            <if test="di2zhoushenjingfanshe!=null">`di2zhoushenjingfanshe` = #{di2zhoushenjingfanshe},</if>
+            <if test="di2zhoubinglizheng!=null">`di2zhoubinglizheng` = #{di2zhoubinglizheng},</if>
+            <if test="di2zhouNIHSS!=null">`di2zhouNIHSS` = #{di2zhouNIHSS},</if>
+            <if test="di2zhouGLASGOW!=null">`di2zhouGLASGOW` = #{di2zhouGLASGOW},</if>
+            <if test="di2zhouADL!=null">`di2zhouADL` = #{di2zhouADL},</if>
+            <if test="di2zhouMRANKIN!=null">`di2zhouMRANKIN` = #{di2zhouMRANKIN},</if>
+            <if test="di3yuexueya!=null">`di3yuexueya` = #{di3yuexueya},</if>
+            <if test="di3yueyishishuiping!=null">`di3yueyishishuiping` = #{di3yueyishishuiping},</if>
+            <if test="di3yuezhitiyundongjili!=null">`di3yuezhitiyundongjili` = #{di3yuezhitiyundongjili},</if>
+            <if test="di3yueganjuezhangai!=null">`di3yueganjuezhangai` = #{di3yueganjuezhangai},</if>
+            <if test="di3yueyuyanbiaoda!=null">`di3yueyuyanbiaoda` = #{di3yueyuyanbiaoda},</if>
+            <if test="di3yueshenjingfanshe!=null">`di3yueshenjingfanshe` = #{di3yueshenjingfanshe},</if>
+            <if test="di3yuebinglizheng!=null">`di3yuebinglizheng` = #{di3yuebinglizheng},</if>
+            <if test="di3yueNIHSS!=null">`di3yueNIHSS` = #{di3yueNIHSS},</if>
+            <if test="di3yueGLASGOW!=null">`di3yueGLASGOW` = #{di3yueGLASGOW},</if>
+            <if test="di3yueADL!=null">`di3yueADL` = #{di3yueADL},</if>
+            <if test="di3yueMRANKIN!=null">`di3yueMRANKIN` = #{di3yueMRANKIN},</if>
+            <if test="di6yuexueya!=null">`di6yuexueya` = #{di6yuexueya},</if>
+            <if test="di6yueyishishuiping!=null">`di6yueyishishuiping` = #{di6yueyishishuiping},</if>
+            <if test="di6yuezhitiyundongjili!=null">`di6yuezhitiyundongjili` = #{di6yuezhitiyundongjili},</if>
+            <if test="di6yueganjuezhangai!=null">`di6yueganjuezhangai` = #{di6yueganjuezhangai},</if>
+            <if test="di6yueyuyanbiaoda!=null">`di6yueyuyanbiaoda` = #{di6yueyuyanbiaoda},</if>
+            <if test="di6yueshenjingfanshe!=null">`di6yueshenjingfanshe` = #{di6yueshenjingfanshe},</if>
+            <if test="di6yuebinglizheng!=null">`di6yuebinglizheng` = #{di6yuebinglizheng},</if>
+            <if test="di6yueNIHSS!=null">`di6yueNIHSS` = #{di6yueNIHSS},</if>
+            <if test="di6yueGLASGOW!=null">`di6yueGLASGOW` = #{di6yueGLASGOW},</if>
+            <if test="di6yueADL!=null">`di6yueADL` = #{di6yueADL},</if>
+            <if test="di6yueMRANKIN!=null">`di6yueMRANKIN` = #{di6yueMRANKIN},</if>
+            <if test="di6yueMMSE!=null">`di6yueMMSE` = #{di6yueMMSE},</if>
+            <if test="di6yueLOTCA!=null">`di6yueLOTCA` = #{di6yueLOTCA},</if>
+            <if test="di1nianxueya!=null">`di1nianxueya` = #{di1nianxueya},</if>
+            <if test="di1nianyishishuiping!=null">`di1nianyishishuiping` = #{di1nianyishishuiping},</if>
+            <if test="di1nianzhitiyundongjili!=null">`di1nianzhitiyundongjili` = #{di1nianzhitiyundongjili},</if>
+            <if test="di1nianganjuezhangai!=null">`di1nianganjuezhangai` = #{di1nianganjuezhangai},</if>
+            <if test="di1nianyuyanbiaoda!=null">`di1nianyuyanbiaoda` = #{di1nianyuyanbiaoda},</if>
+            <if test="di1nianshenjingfanshe!=null">`di1nianshenjingfanshe` = #{di1nianshenjingfanshe},</if>
+            <if test="di1nianbinglizheng!=null">`di1nianbinglizheng` = #{di1nianbinglizheng},</if>
+            <if test="di1nianNIHSS!=null">`di1nianNIHSS` = #{di1nianNIHSS},</if>
+            <if test="di1nianGLASGOW!=null">`di1nianGLASGOW` = #{di1nianGLASGOW},</if>
+            <if test="di1nianADL!=null">`di1nianADL` = #{di1nianADL},</if>
+            <if test="di1nianMRANKIN!=null">`di1nianMRANKIN` = #{di1nianMRANKIN},</if>
+            <if test="di3nianxueya!=null">`di3nianxueya` = #{di3nianxueya},</if>
+            <if test="di3nianyishishuiping!=null">`di3nianyishishuiping` = #{di3nianyishishuiping},</if>
+            <if test="di3nianzhitiyundongjili!=null">`di3nianzhitiyundongjili` = #{di3nianzhitiyundongjili},</if>
+            <if test="di3nianganjuezhangai!=null">`di3nianganjuezhangai` = #{di3nianganjuezhangai},</if>
+            <if test="di3nianyuyanbiaoda!=null">`di3nianyuyanbiaoda` = #{di3nianyuyanbiaoda},</if>
+            <if test="di3nianshenjingfanshe!=null">`di3nianshenjingfanshe` = #{di3nianshenjingfanshe},</if>
+            <if test="di3nianbinglizheng!=null">`di3nianbinglizheng` = #{di3nianbinglizheng},</if>
+            <if test="di3nianNIHSS!=null">`di3nianNIHSS` = #{di3nianNIHSS},</if>
+            <if test="di3nianGLASGOW!=null">`di3nianGLASGOW` = #{di3nianGLASGOW},</if>
+            <if test="di3nianADL!=null">`di3nianADL` = #{di3nianADL},</if>
+            <if test="di3nianMRANKIN!=null">`di3nianMRANKIN` = #{di3nianMRANKIN},</if>
+            <if test="di5nianxueya!=null">`di5nianxueya` = #{di5nianxueya},</if>
+            <if test="di5nianyishishuiping!=null">`di5nianyishishuiping` = #{di5nianyishishuiping},</if>
+            <if test="di5nianzhitiyundongjili!=null">`di5nianzhitiyundongjili` = #{di5nianzhitiyundongjili},</if>
+            <if test="di5nianganjuezhangai!=null">`di5nianganjuezhangai` = #{di5nianganjuezhangai},</if>
+            <if test="di5nianyuyanbiaoda!=null">`di5nianyuyanbiaoda` = #{di5nianyuyanbiaoda},</if>
+            <if test="di5nianshenjingfanshe!=null">`di5nianshenjingfanshe` = #{di5nianshenjingfanshe},</if>
+            <if test="di5nianbinglizheng!=null">`di5nianbinglizheng` = #{di5nianbinglizheng},</if>
+            <if test="di5nianNIHSS!=null">`di5nianNIHSS` = #{di5nianNIHSS},</if>
+            <if test="di5nianGLASGOW!=null">`di5nianGLASGOW` = #{di5nianGLASGOW},</if>
+            <if test="di5nianADL!=null">`di5nianADL` = #{di5nianADL},</if>
+            <if test="di5nianMRANKIN!=null">`di5nianMRANKIN` = #{di5nianMRANKIN},</if>
+            <if test="di10nianxueya!=null">`di10nianxueya` = #{di10nianxueya},</if>
+            <if test="di10nianyishishuiping!=null">`di10nianyishishuiping` = #{di10nianyishishuiping},</if>
+            <if test="di10nianzhitiyundongjili!=null">`di10nianzhitiyundongjili` = #{di10nianzhitiyundongjili},</if>
+            <if test="di10nianganjuezhangai!=null">`di10nianganjuezhangai` = #{di10nianganjuezhangai},</if>
+            <if test="di10nianyuyanbiaoda!=null">`di10nianyuyanbiaoda` = #{di10nianyuyanbiaoda},</if>
+            <if test="di10nianshenjingfanshe!=null">`di10nianshenjingfanshe` = #{di10nianshenjingfanshe},</if>
+            <if test="di10nianbinglizheng!=null">`di10nianbinglizheng` = #{di10nianbinglizheng},</if>
+            <if test="di10nianNIHSS!=null">`di10nianNIHSS` = #{di10nianNIHSS},</if>
+            <if test="di10nianGLASGOW!=null">`di10nianGLASGOW` = #{di10nianGLASGOW},</if>
+            <if test="di10nianADL!=null">`di10nianADL` = #{di10nianADL},</if>
+            <if test="di10nianMRANKIN!=null">`di10nianMRANKIN` = #{di10nianMRANKIN},</if>
+            <if test="kangfuduanlian!=null">`kangfuduanlian` = #{kangfuduanlian},</if>
+            <if test="liliao!=null">`liliao` = #{liliao},</if>
+            <if test="kangfushijian!=null">`kangfushijian` = #{kangfushijian},</if>
         </trim>
-        WHERE `住院号` = #{no}
+        WHERE `zhuyuanhao` = #{zhuyuanhao}
     </update>
 
 
     <select id="selectbynolist" parameterType="List" resultType="java.util.LinkedHashMap">
-        SELECT * FROM `患者手术相关信息` where `住院号` in
+        SELECT * FROM `信息表` where `zhuyuanhao` in
         <foreach collection="list" item="listItem" index="index" open="(" separator="," close=")"> #{listItem,jdbcType=VARCHAR} </foreach>
     </select>
 
 	<!-- 查询基本信息 -->
 	<select id="selectjiben" parameterType="Map" resultType="java.util.Map">
-		SELECT `住院号` no, `姓名` xingming, `性别` xingbie, `年龄` nianling, `民族` minzu, `婚姻` hunyin, `出生地` chushengdi,
-         `职业` zhiye FROM `患者手术相关信息`
+		SELECT `fenzhongxin`,`zhuyuanhao`,`xingming`,`zhuyuancishu`,`xingbie` , `nianling` ,`chushengriqi`,
+        `guoji`,`jiguan`, `minzu`,`shenfenzhenghao`,`zhiye`,`zhuzhi`,`lianxidianhua`FROM `信息表`
         WHERE 1=1
             <if test="xingming!=null and xingming != ''">
-                and `姓名` = #{xingming}
+                and `xingming` = #{xingming}
             </if>
         LIMIT #{start}, #{limit}
 	</select>
 
     <!--插入信息-->
     <insert id="insertdata" parameterType="java.util.Map">
-        INSERT INTO `患者手术相关信息` (`住院号`,`姓名`,`性别`,`年龄`,`民族`,`婚姻`,`出生地`,`职业`,`脑脊液检查数据`,
-        `血常规数据`,`常规尿液数据`,`血糖检查数据`,`MRI数据`,`MRA数据`,`脑血管造影数据`,`数字减影血管造影数据`,
-        `经颅多普勒超声检查数据`,`磁共振检查数据`,`颅内压`,`神经系统变化`,`血液生化`,`凝血功能`,`胸部X线检查`,
-        `脑出血类型`,`出血位置`,`出血原因`,`出血体积`,`出血量`,`血肿形态`,`脑内状况`,`发病时间`,`实施急救措施`,`是否饮酒`,
-        `病人的状态`,`脑部CT数据`,`手术时间`,`心电图数据`,`发病前有哪些活动`,`并发症`,`病人的体征状况数据`,`相关病史`,
-        `手术中的突发情况`,`手术的所有备选方案`,`手术实施方案`,`手术时长`,`手术过程中的体征状况`,`麻醉剂量`,`术中用药`,
-        `手术效果`,`住院的时长`,`术后用药`,`恢复状态`,`出院时状态`,`身体指标变化`,`营养摄入`,`病人状态`,`复查情况`,`方案修改`)
-		VALUES (#{no}, #{xingming}, #{xingbie}, #{nianling}, #{minzu}, #{hunyin}, #{chushengdi}, #{zhiye}, #{naojiye}, #{xuechanggui},
-		#{changguiniaoye}, #{xuetangjiancha}, #{MRI}, #{MRA}, #{naoxueguanzaoying}, #{shuzijianying}, #{jingluduopule}, #{cigongzhen}, 
-		#{luneiya}, #{shenjingxitong}, #{xueyeshenghua}, #{ningxuegongneng}, #{xiongbuxxian}, #{naochuxueleixing}, #{chuxueweizhi}, 
-		#{chuxueyuanyin}, #{chuxuetiji}, #{chuxueliang}, #{xuezhongxingtai}, #{naoneiqingkuang}, #{fabingshijian}, #{shishijijiucuoshi}, 
-		#{shifouyinjiu}, #{bingrenzhuangtai}, #{naobuct}, #{shoushushijian}, #{xindiantushuju}, #{fabingqianhuodong}, #{bingfazheng}, 
-		#{tizheng}, #{bingshi}, #{tufaqingkuang}, #{beixuanfangan}, #{shishifangan}, #{shoushushichang}, #{shoushutizheng}, #{mazuijiliang}, 
-		#{shuzhongyongyao}, #{shoushuxiaoguo}, #{zhuyuanshichang}, #{shuhouyongyao}, #{huifuzhuangtai}, #{chuyuanzhuangtai}, 
-		#{shentizhibiaobianhua}, #{yingyangsheru}, #{bingrenzhuangtai}, #{fuchaqingkuang}, #{fanganxiugai})
+        INSERT INTO `信息表` (`fenzhongxin`,`zhuyuanhao`,`xingming`,`zhuyuancishu`,`xingbie` , `nianling` ,`chushengriqi`,
+        `guoji`,`jiguan`, `minzu`,`shenfenzhenghao`,`zhiye`,`zhuzhi`,`lianxidianhua`)
+		VALUES (#{fenzhongxin},#{zhuyuanhao},#{xingming},#{zhuyuancishu},#{xingbie},#{nianling},#{chushengriqi},#{guoji},#{jiguan},
+		#{minzu},#{shenfenzhenghao}, #{zhiye},#{zhuzhi},#{lianxidianhua})
     </insert>
 </mapper>
 
